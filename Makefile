@@ -1,9 +1,8 @@
-
 all: normal_version inverted_version
 normal_version:
 	mkdir -p dist
 	(echo "-- Script for displaying GPS location of a model as a QR code. https://github.com/alufers/edgetx-gps-qrcode" && \
-		luamin -f gps_qr_src.lua) > dist/GPSqr.lua
+		cat gps_qr_src.lua | luamin -c ) > dist/GPSqr.lua
 
 TEMP_FILE := $(shell mktemp)
 inverted_version:
@@ -11,4 +10,4 @@ inverted_version:
 	cp gps_qr_src.lua $(TEMP_FILE)
 	sed -i 's/local INVERTED = false/local INVERTED = true/' $(TEMP_FILE)
 	(echo "-- Script for displaying GPS location of a model as a QR code (inverted display version). https://github.com/alufers/edgetx-gps-qrcode" && \
-		luamin -f $(TEMP_FILE)) > dist/GPSqrI.lua
+		cat $(TEMP_FILE) | luamin -c ) > dist/GPSqrI.lua
