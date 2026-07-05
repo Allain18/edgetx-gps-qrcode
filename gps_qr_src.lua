@@ -1057,7 +1057,7 @@ local function bg_func()
 		-- collectgarbage("stop")
 		-- start_k, start_b = collectgarbage("count")
 		
-		qr_data = qrcode("geo:"..last_latitude..","..last_longitude)
+		qr_data = qrcode("geo:0,0?q="..last_latitude..","..last_longitude)
 		
 		-- end_k, end_b = collectgarbage("count")
 		-- collectgarbage("restart")
